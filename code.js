@@ -42,23 +42,6 @@ function obtenerDatosDelUsuario() {
     let consultaNombre;
     let caracterNN = "!@#$%^&*()+=-[·]\\\';,./{}|\":<>?01234567890";
 
-    // function obtenerNombreValido(){
-    //     consultaNombre = prompt("Ingresa tu nombre");
-    //     if((consultaNombre.length<3) || (consultaNombre == null) || (consultaNombre == undefined) || (consultaNombre.length == -1)){
-    //         alert("Por favor ingrese un nombre valido. El texto ingresado es muy corto o está vacio.");
-    //         obtenerNombreValido();
-    //     } else if (consultaNombre.length>=3){
-    //         for ( let i = 0; i < consultaNombre.length; i++ ){ 
-    //             if((caracterNN.indexOf(consultaNombre.charAt(i))!= -1) ){
-    //                 alert("Por favor ingrese un nombre valido. Debe ingresar solo letras.");
-    //                 obtenerNombreValido();
-    //             };
-    //         }   
-    //     } else {
-    //         return consultaNombre;
-    //     };
-    // };
-
     function obtenerNombreValido(){
         consultaNombre = prompt("Ingresa tu nombre");
         if((consultaNombre.length<3) || (consultaNombre == null) || (consultaNombre == undefined) || (consultaNombre == "    ")){
@@ -75,8 +58,6 @@ function obtenerDatosDelUsuario() {
         return consultaNombre;
         };
     };
-
-
     obtenerNombreValido();
 
 ///////////////////////
@@ -109,7 +90,7 @@ function obtenerDatosDelUsuario() {
 /////////////////////
 
     const consultaInteresPorJs = confirm("¿Te interesa Javascript?");
-    
+/////////////////////
 
     datosPersona.nombre= consultaNombre;
     datosPersona.edad= consultaEdad;
@@ -148,7 +129,6 @@ function recorrerListadoYRenderizarTarjetas() {
         seccionTarjetas.innerHTML=``;
     } 
 };
-
 
 function alternarColorTema() {
 /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
