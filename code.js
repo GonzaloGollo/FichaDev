@@ -85,26 +85,35 @@ function renderizarDatosUsuario() {
   /* ------------------- NO TOCAR NI ELIMINAR ESTA FUNCION. ------------------- */
   obtenerDatosDelUsuario();
   /* --------------- PUNTO 2: Escribe tu codigo a partir de aqui --------------- */
-  document.querySelector("#nombre").innerHTML= `${datosPersona.nombre}` ;
-  document.querySelector("#edad").innerHTML= `${datosPersona.edad}` ;
-  document.querySelector("#ciudad").innerHTML= `${datosPersona.ciudad}` ;
-  document.querySelector("#javascript").innerHTML= `${datosPersona.interesPorJs? "Sí":"No"}` ;
+    document.querySelector("#nombre").innerHTML= `${datosPersona.nombre}` ;
+    document.querySelector("#edad").innerHTML= `${datosPersona.edad}` ;
+    document.querySelector("#ciudad").innerHTML= `${datosPersona.ciudad}` ;
+    document.querySelector("#javascript").innerHTML= `${datosPersona.interesPorJs? "Sí":"No"}` ;
 }
 
 
 function recorrerListadoYRenderizarTarjetas() {
   /* ------------------ PUNTO 3: Escribe tu codigo desde aqui ------------------ */
-    let tarjeta;
-    let seccionTarjetas = document.querySelector("#fila");
+  //////////////// OK //////////////////// 
+let tarjeta;
+let seccionTarjetas = document.querySelector("#fila");
 
-    listado.forEach(dato => {
-        tarjeta =  `<article class="caja">
-        <img src="${dato.imgUrl}" alt="" />
-        <P>${dato.lenguajes}</P>
-        <P>Bimestre: ${dato.bimestre}</P></article>`; 
-        seccionTarjetas.innerHTML +=tarjeta;
-    });
-  return tarjeta;
+    if(!seccionTarjetas.classList.contains("tarjetasVistas")){
+        seccionTarjetas.classList.add("tarjetasVistas");
+        listado.forEach(dato => {
+            tarjeta =  `<article class="caja">
+            <img src="${dato.imgUrl}" alt="" />
+            <P>${dato.lenguajes}</P>
+            <P>Bimestre: ${dato.bimestre}</P></article>`; 
+            seccionTarjetas.innerHTML +=tarjeta;
+        });
+    } else{
+        seccionTarjetas.classList.remove("tarjetasVistas");
+        listado.forEach(dato => {
+            seccionTarjetas.innerHTML=``;
+        });
+    }
+
 };
 
 
