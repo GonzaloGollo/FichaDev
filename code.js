@@ -39,27 +39,34 @@ function obtenerDatosDelUsuario() {
   /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
     const anioActual = 2022;
     //////////////////////// Validacion 
-    let nombre;
+    let consultaNombre;
     let caracterNN = "!@#$%^&*()+=-[·]\\\';,./{}|\":<>?01234567890";
 
     function obtenerNombreValido(){
-        nombre = prompt("Ingresa tu nombre");
-        console.log(nombre);
-        for ( let i = 0; i < nombre.length; i++ ){ 
-            if ((caracterNN.indexOf(nombre.charAt(i))!= -1) || (nombre.length <= 3) || (nombre === null) || (nombre === undefined) || (nombre ==="")){
-                alert("Por favor ingrese un nombre valido");
-                obtenerNombreValido();
-                console.log(nombre);
-            }; 
+        consultaNombre = prompt("Ingresa tu nombre");
+        if((consultaNombre.length<3) || (consultaNombre == null) || (consultaNombre == undefined) || (consultaNombre.length == -1)){
+            alert("Por favor ingrese un nombre valido. El texto ingresado es muy corto o está vacio.");
+            obtenerNombreValido();
+        } else if (consultaNombre.length>=3){
+            for ( let i = 0; i < consultaNombre.length; i++ ){ 
+                if((caracterNN.indexOf(consultaNombre.charAt(i))!= -1) ){
+                    alert("Por favor ingrese un nombre valido. Debe ingresar solo letras.");
+                    obtenerNombreValido();
+                };
+            }   
+        } else {
+            return consultaNombre;
         };
-        return nombre;
-    };    
+        };
+    console.log(consultaNombre);
+    
     obtenerNombreValido();
+
     ///////////////////////
     let consultaEdad;
     function obtenerEdadValida(){
         consultaEdad = (anioActual - (prompt("Ingrese el año en que naciste")));
-        if (((consultaEdad) > 100 ) || ((consultaEdad) < 18)){
+        if (((consultaEdad) > 100 ) || ((consultaEdad) < 18) ||(isNaN(consultaEdad)) ){
             alert("Por favor ingrese un año válido");
             obtenerEdadValida();
         } 
@@ -68,14 +75,25 @@ function obtenerDatosDelUsuario() {
     obtenerEdadValida();
     /////////////////////////////
 
-    const consultaCiudad = prompt("Ingresa la ciudad en que vives");
+    // const consultaCiudad = prompt("Ingresa la ciudad en que vives");
+
+    let consultaCiudad;
+    function obtenerCiudadValida(){
+        consultaCiudad = (prompt("Ingresa la ciudad en que vives"));
+        if ( (consultaCiudad.length <= 3) || (consultaCiudad === null) || (consultaCiudad === undefined) || (consultaCiudad.length == -1)){
+            alert("Por favor ingrese una ciudad válida");
+            obtenerCiudadValida();
+        } 
+        return consultaCiudad;
+    };    
+    obtenerCiudadValida();
 
     /////////////////////
 
     const consultaInteresPorJs = confirm("¿Te interesa Javascript?");
     
 
-    datosPersona.nombre= nombre;
+    datosPersona.nombre= consultaNombre;
     datosPersona.edad= consultaEdad;
     datosPersona.ciudad= consultaCiudad;
     datosPersona.interesPorJs= consultaInteresPorJs;
@@ -98,7 +116,7 @@ function recorrerListadoYRenderizarTarjetas() {
 let tarjeta;
 let seccionTarjetas = document.querySelector("#fila");
 
-    if(!seccionTarjetas.classList.contains("tarjetasVistas")){
+    if ( !seccionTarjetas.classList.contains("tarjetasVistas") ) {
         seccionTarjetas.classList.add("tarjetasVistas");
         listado.forEach(dato => {
             tarjeta =  `<article class="caja">
@@ -107,13 +125,12 @@ let seccionTarjetas = document.querySelector("#fila");
             <P>Bimestre: ${dato.bimestre}</P></article>`; 
             seccionTarjetas.innerHTML +=tarjeta;
         });
-    } else{
+    } else {
         seccionTarjetas.classList.remove("tarjetasVistas");
         listado.forEach(dato => {
             seccionTarjetas.innerHTML=``;
         });
-    }
-
+    } 
 };
 
 
