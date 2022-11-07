@@ -36,15 +36,32 @@ cambiarTema.addEventListener("click", alternarColorTema);
 /* --------------------------- NO TOCAR HASTA ACÁ --------------------------- */
 
 function obtenerDatosDelUsuario() {
-  /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
-    const anioActual = 2022;
-    //////////////////////// Validacion 
+/* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
+    
+//////////////////////// Validacion 
     let consultaNombre;
     let caracterNN = "!@#$%^&*()+=-[·]\\\';,./{}|\":<>?01234567890";
 
+    // function obtenerNombreValido(){
+    //     consultaNombre = prompt("Ingresa tu nombre");
+    //     if((consultaNombre.length<3) || (consultaNombre == null) || (consultaNombre == undefined) || (consultaNombre.length == -1)){
+    //         alert("Por favor ingrese un nombre valido. El texto ingresado es muy corto o está vacio.");
+    //         obtenerNombreValido();
+    //     } else if (consultaNombre.length>=3){
+    //         for ( let i = 0; i < consultaNombre.length; i++ ){ 
+    //             if((caracterNN.indexOf(consultaNombre.charAt(i))!= -1) ){
+    //                 alert("Por favor ingrese un nombre valido. Debe ingresar solo letras.");
+    //                 obtenerNombreValido();
+    //             };
+    //         }   
+    //     } else {
+    //         return consultaNombre;
+    //     };
+    // };
+
     function obtenerNombreValido(){
         consultaNombre = prompt("Ingresa tu nombre");
-        if((consultaNombre.length<3) || (consultaNombre == null) || (consultaNombre == undefined) || (consultaNombre.length == -1)){
+        if((consultaNombre.length<3) || (consultaNombre == null) || (consultaNombre == undefined) || (consultaNombre == "    ")){
             alert("Por favor ingrese un nombre valido. El texto ingresado es muy corto o está vacio.");
             obtenerNombreValido();
         } else if (consultaNombre.length>=3){
@@ -55,27 +72,28 @@ function obtenerDatosDelUsuario() {
                 };
             }   
         } else {
-            return consultaNombre;
+        return consultaNombre;
         };
-        };
-    console.log(consultaNombre);
-    
+    };
+
+
     obtenerNombreValido();
 
-    ///////////////////////
+///////////////////////
+    const anioActual = 2022;
     let consultaEdad;
     function obtenerEdadValida(){
         consultaEdad = (anioActual - (prompt("Ingrese el año en que naciste")));
         if (((consultaEdad) > 100 ) || ((consultaEdad) < 18) ||(isNaN(consultaEdad)) ){
             alert("Por favor ingrese un año válido");
             obtenerEdadValida();
-        } 
+        };
         return consultaEdad;
     };    
     obtenerEdadValida();
-    /////////////////////////////
+/////////////////////////////
 
-    // const consultaCiudad = prompt("Ingresa la ciudad en que vives");
+// const consultaCiudad = prompt("Ingresa la ciudad en que vives");
 
     let consultaCiudad;
     function obtenerCiudadValida(){
@@ -83,12 +101,12 @@ function obtenerDatosDelUsuario() {
         if ( (consultaCiudad.length <= 3) || (consultaCiudad === null) || (consultaCiudad === undefined) || (consultaCiudad.length == -1)){
             alert("Por favor ingrese una ciudad válida");
             obtenerCiudadValida();
-        } 
+        };
         return consultaCiudad;
     };    
     obtenerCiudadValida();
 
-    /////////////////////
+/////////////////////
 
     const consultaInteresPorJs = confirm("¿Te interesa Javascript?");
     
@@ -100,9 +118,9 @@ function obtenerDatosDelUsuario() {
 }
 
 function renderizarDatosUsuario() {
-  /* ------------------- NO TOCAR NI ELIMINAR ESTA FUNCION. ------------------- */
-  obtenerDatosDelUsuario();
-  /* --------------- PUNTO 2: Escribe tu codigo a partir de aqui --------------- */
+/* ------------------- NO TOCAR NI ELIMINAR ESTA FUNCION. ------------------- */
+    obtenerDatosDelUsuario();
+/* --------------- PUNTO 2: Escribe tu codigo a partir de aqui --------------- */
     document.querySelector("#nombre").innerHTML= `${datosPersona.nombre}` ;
     document.querySelector("#edad").innerHTML= `${datosPersona.edad}` ;
     document.querySelector("#ciudad").innerHTML= `${datosPersona.ciudad}` ;
@@ -113,8 +131,8 @@ function renderizarDatosUsuario() {
 function recorrerListadoYRenderizarTarjetas() {
   /* ------------------ PUNTO 3: Escribe tu codigo desde aqui ------------------ */
   //////////////// OK //////////////////// 
-let tarjeta;
-let seccionTarjetas = document.querySelector("#fila");
+    let tarjeta;
+    let seccionTarjetas = document.querySelector("#fila");
 
     if ( !seccionTarjetas.classList.contains("tarjetasVistas") ) {
         seccionTarjetas.classList.add("tarjetasVistas");
@@ -127,34 +145,24 @@ let seccionTarjetas = document.querySelector("#fila");
         });
     } else {
         seccionTarjetas.classList.remove("tarjetasVistas");
-        listado.forEach(dato => {
-            seccionTarjetas.innerHTML=``;
-        });
+        seccionTarjetas.innerHTML=``;
     } 
 };
 
 
 function alternarColorTema() {
-  /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
+/* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
     const body =  document.querySelector('body');
-    const developer = document.querySelector('#developer');
- 
-    if (body.classList.contains("dark")) {
-        body.classList.remove("dark");
-        developer.classList.remove("dark");
-        } else {
-            body.classList.add("dark");
-            developer.classList.add("dark");
-    };
+    body.classList.contains("dark")? body.classList.remove("dark") : body.classList.add("dark");
 };
 
 /* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
 const txtSobreMi = document.querySelector('#sobre-mi');
 
 function visualizarSobreMi(){ 
-window.addEventListener("keydown", (e) => {
-    if (e.key === "f" || e.key === "F") {
-        txtSobreMi.classList.contains("oculto")? txtSobreMi.classList.remove("oculto"): txtSobreMi.classList.add("oculto");
+    window.addEventListener("keydown", (e) => {
+        if (e.key === "f" || e.key === "F") {
+            txtSobreMi.classList.contains("oculto")? txtSobreMi.classList.remove("oculto"): txtSobreMi.classList.add("oculto");
         };
     });
 };
