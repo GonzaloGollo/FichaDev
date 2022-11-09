@@ -44,7 +44,7 @@ function obtenerDatosDelUsuario() {
 
     function obtenerNombreValido(){
         consultaNombre = prompt("Ingresa tu nombre");
-        if((consultaNombre.length<3) || (consultaNombre == null) || (consultaNombre == undefined) || (consultaNombre == "    ")){
+        if((consultaNombre.length < 3) || (consultaNombre == null) || (consultaNombre == undefined) || (consultaNombre == "    ")){
             alert("Por favor ingrese un nombre valido. El texto ingresado es muy corto o está vacio.");
             obtenerNombreValido();
         } else if (consultaNombre.length>=3){
@@ -62,9 +62,9 @@ function obtenerDatosDelUsuario() {
 
 ///////////////////////
     const anioActual = 2022;
-    let consultaEdad;
+    let consultaEdad; 
     function obtenerEdadValida(){
-        consultaEdad = (anioActual - (prompt("Ingrese el año en que naciste")));
+        consultaEdad = (anioActual - (int(prompt("Ingrese el año en que naciste"))));
         if (((consultaEdad) > 100 ) || ((consultaEdad) < 18) ||(isNaN(consultaEdad)) ){
             alert("Por favor ingrese un año válido");
             obtenerEdadValida();
@@ -74,12 +74,12 @@ function obtenerDatosDelUsuario() {
     obtenerEdadValida();
 /////////////////////////////
 
-// const consultaCiudad = prompt("Ingresa la ciudad en que vives");
+/* const consultaCiudad = prompt("Ingresa la ciudad en que vives");*/
 
     let consultaCiudad;
     function obtenerCiudadValida(){
         consultaCiudad = (prompt("Ingresa la ciudad en que vives"));
-        if ( (consultaCiudad.length <= 3) || (consultaCiudad === null) || (consultaCiudad === undefined) || (consultaCiudad.length == -1)){
+        if ((consultaCiudad.length <= 3) || (consultaCiudad === null) || (consultaCiudad === undefined) || (consultaCiudad.length == -1)){
             alert("Por favor ingrese una ciudad válida");
             obtenerCiudadValida();
         };
@@ -87,10 +87,11 @@ function obtenerDatosDelUsuario() {
     };    
     obtenerCiudadValida();
 
-/////////////////////
+/*---------------------------------------*/
+
 
     const consultaInteresPorJs = confirm("¿Te interesa Javascript?");
-/////////////////////
+/*---------------------------------------*/
 
     datosPersona.nombre= consultaNombre;
     datosPersona.edad= consultaEdad;
@@ -111,8 +112,8 @@ function renderizarDatosUsuario() {
 
 function recorrerListadoYRenderizarTarjetas() {
   /* ------------------ PUNTO 3: Escribe tu codigo desde aqui ------------------ */
-  //////////////// OK //////////////////// 
-    let tarjeta;
+/*-----------------  OK   ---------- CAMBIAR Y Q UNA VEZ Q HAGA CLICK SOLO SE VISUALICE< Y EL NUEVO CLICK NO HAGA NADA ---------*/
+let tarjeta;
     let seccionTarjetas = document.querySelector("#fila");
 
     if ( !seccionTarjetas.classList.contains("tarjetasVistas") ) {
@@ -123,26 +124,30 @@ function recorrerListadoYRenderizarTarjetas() {
             <P>${dato.lenguajes}</P>
             <P>Bimestre: ${dato.bimestre}</P></article>`; 
             seccionTarjetas.innerHTML +=tarjeta;
+            materiasBtn.removeEventListener("click", recorrerListadoYRenderizarTarjetas);
         });
-    } else {
-        seccionTarjetas.classList.remove("tarjetasVistas");
-        seccionTarjetas.innerHTML=``;
     } 
+    // else {
+    //     seccionTarjetas.classList.remove("tarjetasVistas");
+    //     seccionTarjetas.innerHTML=``;
+    // } 
 };
 
 function alternarColorTema() {
 /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
-    const body =  document.querySelector('body');
-    body.classList.contains("dark")? body.classList.remove("dark") : body.classList.add("dark");
+/*-----------------  OK   -------------------*/
+    const sitio =  document.querySelector('#sitio');
+    sitio.classList.contains("dark")? sitio.classList.remove("dark") : sitio.classList.add("dark");
 };
 
 /* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
+/*-----------------  OK   -------------------*/
 const txtSobreMi = document.querySelector('#sobre-mi');
-
 function visualizarSobreMi(){ 
     window.addEventListener("keydown", (e) => {
         if (e.key === "f" || e.key === "F") {
-            txtSobreMi.classList.contains("oculto")? txtSobreMi.classList.remove("oculto"): txtSobreMi.classList.add("oculto");
+            // txtSobreMi.classList.contains("oculto")? txtSobreMi.classList.remove("oculto"): txtSobreMi.classList.add("oculto");
+            txtSobreMi.classList.remove("oculto");
         };
     });
 };
