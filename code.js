@@ -51,11 +51,8 @@ function obtenerDatosDelUsuario() {
     } while (( consultaNombre.length < 2 ) || ( consultaNombre === null ) || ( consultaNombre === undefined ) || ( consultaNombre.includes("  ")== true ) || ( ingresoErroneo === true ));
 
     /* ---------------  AÑO  --------------- */
-
-
-const fechaActual = new Date();
-const anioActual = fechaActual.getUTCFullYear();
-console.log(anioActual);
+    const fechaActual = new Date();
+    const anioActual = fechaActual.getUTCFullYear();
     let consultaEdad; 
     do {
         consultaEdad = (anioActual - ( parseInt( prompt( "Ingrese el año en que naciste." ) ) ));
@@ -81,13 +78,37 @@ console.log(anioActual);
     const consultaInteresPorJs = confirm("¿Te interesa Javascript?");
 
     /*----------------  Asignaciones de dato y correccion de formato str  -----------------*/
+    // let nombre = consultaNombre.toLowerCase();
+    // let ciudad = consultaCiudad.toLowerCase();
+    
+    /* FUNCIONA OK
+     let nombre = (consultaNombre.toLowerCase())[0].toUpperCase() + (consultaNombre.toLowerCase()).substring(1);
+     let ciudad = (consultaCiudad.toLowerCase())[0].toUpperCase() + (consultaCiudad.toLowerCase()).substring(1);*/
+
+    // const nombre = consultaNombre.split(" ");
+    // for (let i = 0; i < nombre.length; i++) {
+    //     nombre[i] = nombre[i][0].toUpperCase() + nombre[i].substring(1);
+    // };
+    // const ciudad = consultaCiudad.split(" ");
+    // for (let i = 0; i < ciudad.length; i++) {
+    //     ciudad[i] = ciudad[i][0].toUpperCase() + ciudad[i].substring(1);
+    // };
+
     const txtStandarizado = (texto) => {
+        console.log(texto);
         texto = texto.toLowerCase();
+        console.log(texto);
         texto = texto.split(" ");
+        let array = [];
+        console.log(texto);
+        console.log(texto[0] + texto[1] );
         for (let i = 0; i < texto.length; i++) {
-            texto[i] = texto[i][0].toUpperCase() + texto[i].substring(1);
+            console.log(texto + i);
+            texto[i] !="" ? array.push((texto[i][0].toUpperCase() + texto[i].substring(1)).replace(" ", "")) : "";
         };
-        return texto.join(" ");
+  
+        console.log(texto);
+        return array.join(" ");
     }
 
     console.log(txtStandarizado(consultaNombre));
