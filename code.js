@@ -112,7 +112,7 @@ function recorrerListadoYRenderizarTarjetas() {
             <img src="${dato.imgUrl}" alt="" />
             <P>${dato.lenguajes}</P>
             <P>Bimestre: ${dato.bimestre}</P></article>`; 
-            seccionTarjetas.innerHTML +=tarjeta;
+            seccionTarjetas.innerHTML =tarjeta;
             materiasBtn.removeEventListener("click", recorrerListadoYRenderizarTarjetas);
         });
     };
