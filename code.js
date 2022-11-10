@@ -107,8 +107,6 @@ function recorrerListadoYRenderizarTarjetas() {
 /* ------------------ PUNTO 3: Escribe tu codigo desde aqui ------------------ */
     let tarjeta;
     let seccionTarjetas = document.querySelector("#fila");
-    if ( !seccionTarjetas.classList.contains("tarjetasVistas") ) {
-        seccionTarjetas.classList.add("tarjetasVistas");
         listado.forEach(dato => {
             tarjeta =  `<article class="caja">
             <img src="${dato.imgUrl}" alt="" />
@@ -118,7 +116,6 @@ function recorrerListadoYRenderizarTarjetas() {
             materiasBtn.removeEventListener("click", recorrerListadoYRenderizarTarjetas);
         });
     };
-};
 
 function alternarColorTema() {
 /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
