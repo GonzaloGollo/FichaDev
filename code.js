@@ -109,10 +109,10 @@ function recorrerListadoYRenderizarTarjetas() {
     let seccionTarjetas = document.querySelector("#fila");
         listado.forEach(dato => {
             tarjeta =  `<article class="caja">
-            <img src="${dato.imgUrl}" alt="" />
+            <img src="${dato.imgUrl}" alt="Imagen ${dato.lenguajes}" />
             <P>${dato.lenguajes}</P>
             <P>Bimestre: ${dato.bimestre}</P></article>`; 
-            seccionTarjetas.innerHTML =tarjeta;
+            seccionTarjetas.innerHTML += tarjeta;
             materiasBtn.removeEventListener("click", recorrerListadoYRenderizarTarjetas);
         });
     };
