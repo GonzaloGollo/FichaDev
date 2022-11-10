@@ -36,52 +36,69 @@ cambiarTema.addEventListener("click", alternarColorTema);
 /* --------------------------- NO TOCAR HASTA ACÁ --------------------------- */
 function obtenerDatosDelUsuario() {
     /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
+    let ingresoErroneo = false;
+    /* ---------------  Nombre  --------------- */
     let consultaNombre;
     const caracterNN = "!@#$%^&*()+=-[·]\\\';,./{}|\":<>?01234567890";
-
-    const regresar= false
     do {
         consultaNombre = prompt("Ingresa tu nombre");
         for ( let i = 0; i < consultaNombre.length; i++ ){ 
-            if (( caracterNN.indexOf( consultaNombre.charAt(i) )!= -1) ){
+            if (( caracterNN.indexOf( consultaNombre.charAt(i) )!= -1) ){ 
                 alert("Por favor ingrese un nombre valido. Debe ingresar solo letras.");
-                regresar= true;
+                ingresoErroneo = true;
             };
         };
-      } while (( consultaNombre.length < 2 ) || ( consultaNombre === null ) || ( consultaNombre === undefined ) || ( consultaNombre.includes("  ")== true ) || ( regresar === true ));
+    } while (( consultaNombre.length < 2 ) || ( consultaNombre === null ) || ( consultaNombre === undefined ) || ( consultaNombre.includes("  ")== true ) || ( ingresoErroneo === true ));
 
     /* ---------------  AÑO  --------------- */
-    const anioActual = 2022;
+
+
+const fechaActual = new Date();
+const anioActual = fechaActual.getUTCFullYear();
+console.log(anioActual);
     let consultaEdad; 
-    function obtenerEdadValida(){
-        consultaEdad = (anioActual - ( parseInt( prompt( "Ingrese el año en que naciste" ) ) ));
-        if ( ( (consultaEdad) > 100 ) || ( (consultaEdad) < 18 ) ||( isNaN(consultaEdad) ) ){
+    do {
+        consultaEdad = (anioActual - ( parseInt( prompt( "Ingrese el año en que naciste." ) ) ));
+        if ( ( (consultaEdad) > 100 ) || ( (consultaEdad) < 18 ) ||( isNaN(consultaEdad) ) ){ 
             alert("Por favor ingrese un año válido");
-            obtenerEdadValida();
+            ingresoErroneo = true;
         };
-        return consultaEdad;
-    };    
-    obtenerEdadValida();
+    } while ( ingresoErroneo === true );
 
+    /* ---------------  Ciudad  --------------- */
     let consultaCiudad;
-    function obtenerCiudadValida(){
+    do {
         consultaCiudad = prompt("Ingresa la ciudad en que vives");
-        if ( (consultaCiudad.length <= 3) || (consultaCiudad === null) || (consultaCiudad === undefined) || (consultaCiudad.length == -1) ){
-            alert( "Por favor ingrese una ciudad válida" );
-            obtenerCiudadValida();
+        for ( let i = 0; i < consultaCiudad.length; i++ ){ 
+            if (( caracterNN.indexOf( consultaCiudad.charAt(i) )!= -1) ){ 
+                alert("Por favor ingrese un nombre de Ciudad válido. Debe ingresar solo letras.");
+                ingresoErroneo = true;
+            };
         };
-        return consultaCiudad;
-    };    
-    obtenerCiudadValida();
+    } while (( consultaCiudad.length < 2 ) || ( consultaCiudad === null ) || ( consultaCiudad === undefined ) || ( consultaCiudad.includes("  ")== true ) || ( ingresoErroneo === true ));
 
-/*---------------------------------------*/
+    /*-----------------  InteresPorJs  ----------------------*/
     const consultaInteresPorJs = confirm("¿Te interesa Javascript?");
-/*---------------------------------------*/
-    datosPersona.nombre= consultaNombre;
-    datosPersona.edad= consultaEdad;
-    datosPersona.ciudad= consultaCiudad;
-    datosPersona.interesPorJs= consultaInteresPorJs;
-}
+
+    /*----------------  Asignaciones de dato y correccion de formato str  -----------------*/
+    const txtStandarizado = (texto) => {
+        texto = texto.toLowerCase();
+        texto = texto.split(" ");
+        for (let i = 0; i < texto.length; i++) {
+            texto[i] = texto[i][0].toUpperCase() + texto[i].substring(1);
+        };
+        return texto.join(" ");
+    }
+
+    console.log(txtStandarizado(consultaNombre));
+    console.log(txtStandarizado(consultaCiudad));
+
+    // datosPersona.nombre = nombre[0].toUpperCase() + nombre.substring(1);
+    datosPersona.nombre = txtStandarizado(consultaNombre);
+    datosPersona.edad = consultaEdad;
+    datosPersona.ciudad = txtStandarizado(consultaCiudad);
+    datosPersona.interesPorJs = consultaInteresPorJs;
+};
 
 function renderizarDatosUsuario() {
 /* ------------------- NO TOCAR NI ELIMINAR ESTA FUNCION. ------------------- */
