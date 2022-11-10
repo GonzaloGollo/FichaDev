@@ -61,7 +61,7 @@ function obtenerDatosDelUsuario() {
             ingresoErroneo = true;
         };
     } while ( ingresoErroneo === true );
-
+   
     /* ---------------  Ciudad  --------------- */
     let consultaCiudad;
     do {
@@ -73,24 +73,23 @@ function obtenerDatosDelUsuario() {
             };
         };
     } while (( consultaCiudad.length < 2 ) || ( consultaCiudad === null ) || ( consultaCiudad === undefined ) || ( consultaCiudad.includes("  ")== true ) || ( ingresoErroneo === true ));
-
     /*-----------------  InteresPorJs  ----------------------*/
     const consultaInteresPorJs = confirm("¿Te interesa Javascript?");
-
+    
     /*----------------  Asignaciones de dato y correccion de formato str  -----------------*/
-    const txtStandarizado = (texto) => {
+    const txtStandarizado = ( texto ) => {
         texto = texto.toLowerCase();
         texto = texto.split(" ");
         let array = [];
         for (let i = 0; i < texto.length; i++) {
-            texto[i] !="" ? array.push((texto[i][0].toUpperCase() + texto[i].substring(1))) : "";
+            texto[i] !="" ? array.push( ( texto[i][0].toUpperCase() + texto[i].substring(1) ) ) : "";
         };
         return array.join(" ");
     };
 
-    datosPersona.nombre = txtStandarizado(consultaNombre);
+    datosPersona.nombre = txtStandarizado( consultaNombre );
     datosPersona.edad = consultaEdad;
-    datosPersona.ciudad = txtStandarizado(consultaCiudad);
+    datosPersona.ciudad = txtStandarizado( consultaCiudad );
     datosPersona.interesPorJs = consultaInteresPorJs;
 };
 
