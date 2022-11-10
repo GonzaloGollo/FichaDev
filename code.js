@@ -78,43 +78,16 @@ function obtenerDatosDelUsuario() {
     const consultaInteresPorJs = confirm("¿Te interesa Javascript?");
 
     /*----------------  Asignaciones de dato y correccion de formato str  -----------------*/
-    // let nombre = consultaNombre.toLowerCase();
-    // let ciudad = consultaCiudad.toLowerCase();
-    
-    /* FUNCIONA OK
-     let nombre = (consultaNombre.toLowerCase())[0].toUpperCase() + (consultaNombre.toLowerCase()).substring(1);
-     let ciudad = (consultaCiudad.toLowerCase())[0].toUpperCase() + (consultaCiudad.toLowerCase()).substring(1);*/
-
-    // const nombre = consultaNombre.split(" ");
-    // for (let i = 0; i < nombre.length; i++) {
-    //     nombre[i] = nombre[i][0].toUpperCase() + nombre[i].substring(1);
-    // };
-    // const ciudad = consultaCiudad.split(" ");
-    // for (let i = 0; i < ciudad.length; i++) {
-    //     ciudad[i] = ciudad[i][0].toUpperCase() + ciudad[i].substring(1);
-    // };
-
     const txtStandarizado = (texto) => {
-        console.log(texto);
         texto = texto.toLowerCase();
-        console.log(texto);
         texto = texto.split(" ");
         let array = [];
-        console.log(texto);
-        console.log(texto[0] + texto[1] );
         for (let i = 0; i < texto.length; i++) {
-            console.log(texto + i);
-            texto[i] !="" ? array.push((texto[i][0].toUpperCase() + texto[i].substring(1)).replace(" ", "")) : "";
+            texto[i] !="" ? array.push((texto[i][0].toUpperCase() + texto[i].substring(1))) : "";
         };
-  
-        console.log(texto);
         return array.join(" ");
-    }
+    };
 
-    console.log(txtStandarizado(consultaNombre));
-    console.log(txtStandarizado(consultaCiudad));
-
-    // datosPersona.nombre = nombre[0].toUpperCase() + nombre.substring(1);
     datosPersona.nombre = txtStandarizado(consultaNombre);
     datosPersona.edad = consultaEdad;
     datosPersona.ciudad = txtStandarizado(consultaCiudad);
@@ -150,7 +123,7 @@ function recorrerListadoYRenderizarTarjetas() {
 
 function alternarColorTema() {
 /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
-const sitio =  document.querySelector('#sitio');
+    const sitio =  document.querySelector('#sitio');
     sitio.classList.contains("dark")? sitio.classList.remove("dark") : sitio.classList.add("dark");
 };
 
